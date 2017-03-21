@@ -45,7 +45,7 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public List findAll() {
+    public List getAll() {
         return (List) jobDao.findAll();
     }
 

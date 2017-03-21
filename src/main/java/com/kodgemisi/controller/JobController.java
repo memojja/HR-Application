@@ -22,13 +22,6 @@ import javax.validation.Valid;
 @RequestMapping(value = "/jobs")
 public class JobController {
 
-    /*
-        job larin delete ve update ini yap
-        sonrasinda job a bas vuru yapma formu
-        sonra bunlari yetkilendir spring securirty ile !!!
-
-     */
-
     private final JobService jobService;
 
     @Autowired
@@ -56,7 +49,7 @@ public class JobController {
 
     @RequestMapping(value ="" )
     public String getJobs(Model model){
-        model.addAttribute("jobs",jobService.findAll());
+        model.addAttribute("jobs",jobService.getAll());
         return "listJobs";
     }
 

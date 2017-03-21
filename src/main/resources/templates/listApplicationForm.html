@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+
+<tr th:each="jobApplicationForm : ${jobApplicationForms}">
+
+    <td th:text="${jobApplicationForm.name}"/>
+    <td th:text="${jobApplicationForm.email}" />
+
+    <a th:href="${'/applicationForm/' + {jobApplicationForm.id}}"> tum detaylar </a>
+
+    <br />
+</tr>
+
+</body>
+</html>

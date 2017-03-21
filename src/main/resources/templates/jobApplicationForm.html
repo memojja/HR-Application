@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+
+
+
+<form action="/applicationForm" th:action="@{/applicationForm}"  th:method="post" method="post" th:object="${jobApplicationForm}">
+
+    <input type="text" th:field="*{name}"/>
+    <input type="text" th:field="*{email}"/>
+    <input type="text" th:field="*{phoneNumber}"/>
+    <input type="text" th:field="*{adress}"/>
+
+    <button th:type="submit"> submit </button>
+    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+</form>
+
+</body>
+</html>

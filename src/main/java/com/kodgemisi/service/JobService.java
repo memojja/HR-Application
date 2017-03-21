@@ -12,7 +12,7 @@ public interface JobService {
     Job create(Job job);
     Job update(Job job);
     Job findOne(Long id);
-    List findAll();
+    List getAll();
     void delete(Long id);
     void deleteAll();
     boolean existsJob(Long id);
