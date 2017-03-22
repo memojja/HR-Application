@@ -10,16 +10,19 @@
 <td th:text="${job.title}" > Item code will appear here</td>
 <td th:text="${job.description}" > Item code will appear here</td>
 <td th:text="${job.numberOfPeopleToHire}" > Item code will appear here</td>
+
+<!--
+<td th:text="${#dates.format(job.lasApplicationDate, 'dd-MMM-yyyy')}"></td>
+<td><input type="text" name="createdOn" th:value="${#dates.format(prod.createdOn,'yyyy/MM/dd HH:mm')}"/></td>
+-->
 <br />
 
-
-
 gelen basvurular <br />
+
 <tr th:each="form : ${job.applicationForms}">
 
     <td th:text="${form.name}" />
 </tr>
-
 
 
 <a th:href="@{/applicationForm/new(id=${job.id})}" >Basvur </a>
@@ -27,3 +30,14 @@ gelen basvurular <br />
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

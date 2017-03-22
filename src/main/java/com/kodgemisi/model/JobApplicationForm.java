@@ -14,7 +14,7 @@ public class JobApplicationForm {
     private Long id;
     @Column(name = "name")
     private String name;
-    @Column(name = "email") //@Pattern(regexp=".+@.+\\..+", message="Please provide a valid email address")
+    @Column(name = "email")//@Pattern(regexp=".+@.+\\..+", message="Please provide a valid email address")
     private String email;
 
     @Column(name = "phoneNumber")// @Pattern(regexp="(^$|[0-9]{10})",message = "Please provide a valid phone number")
@@ -27,6 +27,7 @@ public class JobApplicationForm {
     @ManyToOne
     @JoinColumn(name = "job_id")
     private Job job;
+
 
 
     public Long getId() {

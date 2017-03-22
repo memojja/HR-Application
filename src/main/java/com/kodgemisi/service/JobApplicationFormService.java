@@ -2,6 +2,7 @@ package com.kodgemisi.service;
 
 import com.kodgemisi.model.Job;
 import com.kodgemisi.model.JobApplicationForm;
+import com.kodgemisi.model.JobDTO;
 
 import java.util.List;
 
@@ -12,5 +13,6 @@ public interface JobApplicationFormService {
     JobApplicationForm create(JobApplicationForm jobApplicationForm);
     List<JobApplicationForm> getAll();
     JobApplicationForm findOne(Long id);
-    void assignJobApplicationForm(Long jobId, Long jobApplicationId);
+    //void assignJobApplicationForm(Long jobId, Long jobApplicationId);
+    void assignJobApplicationForm(JobDTO dto);
 }

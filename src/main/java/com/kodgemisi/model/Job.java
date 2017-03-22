@@ -1,6 +1,12 @@
 package com.kodgemisi.model;
 
+import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,7 +29,13 @@ public class Job {
     @Column(name = "numberOfPeopleToHire")
     private int numberOfPeopleToHire;
 
-    @OneToMany(mappedBy ="job",    cascade = CascadeType.ALL)
+    //@Temporal(TemporalType.DATE)
+    //@DateTimeFormat(pattern="dd/MM/yyyy")
+    //@Type(type = "date")
+   // @Column(name = "las_application_date")
+   // private Date lasApplicationDate;
+
+    @OneToMany(mappedBy ="job")
     private List<JobApplicationForm> applicationForms;
 
     public Long getId() {
@@ -66,4 +78,5 @@ public class Job {
     public void setApplicationForms(List<JobApplicationForm> applicationForms) {
         this.applicationForms = applicationForms;
     }
-}
+
+   }

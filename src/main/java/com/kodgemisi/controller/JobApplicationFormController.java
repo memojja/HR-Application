@@ -3,6 +3,7 @@ package com.kodgemisi.controller;
 import com.kodgemisi.dao.JobDao;
 import com.kodgemisi.model.Job;
 import com.kodgemisi.model.JobApplicationForm;
+import com.kodgemisi.model.JobDTO;
 import com.kodgemisi.service.JobApplicationFormService;
 import com.kodgemisi.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,21 +29,33 @@ public class JobApplicationFormController {
     }
 
     @RequestMapping(value = "/applicationForm/new",method = RequestMethod.GET)
-    public String createForm(@RequestParam(value="id") Long id,Model model){
+    public String createForm(@RequestParam(value="id") String id,Model model){
 
-        Job job =jobService.findOne(id);
-        model.addAttribute("job",job);
-        model.addAttribute("jobApplicationForm",new JobApplicationForm());
+        JobDTO dto =new JobDTO();
+        dto.setJobId(id);
+        model.addAttribute("jobId",dto.getJobId());
+        model.addAttribute("jobApplicationForm",dto);
         return "jobApplicationForm";
     }
 
 
     @RequestMapping(value = "/applicationForm",method = RequestMethod.POST)
-    public String formHandle(@ModelAttribute("jobApplicationForm")JobApplicationForm jobApplicationForm,
-                             @ModelAttribute("job") Job job){
-
+    public String formHandle(@ModelAttribute("jobApplicationForm") JobDTO dto){
+/*
+        JobApplicationForm jobApplicationForm = new JobApplicationForm();
+        jobApplicationForm.setAdress(dto.getAdress());
+        jobApplicationForm.setEmail(dto.getEmail());
+        jobApplicationForm.setName(dto.getName());
+        jobApplicationForm.setPhoneNumber(dto.getPhoneNumber());
+        Long iii =Long.parseLong(dto.getJobId());
+        jobApplicationForm.setJob(jobService.findOne(iii));
         jobApplicationFormService.create(jobApplicationForm);
-        jobApplicationFormService.assignJobApplicationForm(job.getId(),jobApplicationForm.getId());
+
+        jobApplicationFormService.assignJobApplicationForm(Long.parseLong(dto.getJobId()),jobApplicationForm.getId());
+        */
+        jobApplicationFormService.assignJobApplicationForm(dto);
+
+
         return "redirect:/jobs";
     }
 

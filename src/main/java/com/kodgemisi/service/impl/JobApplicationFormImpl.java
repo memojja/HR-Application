@@ -4,6 +4,7 @@ import com.kodgemisi.dao.JobApplicationFormDao;
 import com.kodgemisi.dao.JobDao;
 import com.kodgemisi.model.Job;
 import com.kodgemisi.model.JobApplicationForm;
+import com.kodgemisi.model.JobDTO;
 import com.kodgemisi.service.JobApplicationFormService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,12 +43,32 @@ public class JobApplicationFormImpl implements JobApplicationFormService {
         return jobApplicationFormDao.findOne(id);
     }
 
+    @Override
+    public void assignJobApplicationForm(JobDTO dto) {
 
+
+        JobApplicationForm jobApplicationForm = new JobApplicationForm();
+        jobApplicationForm.setAdress(dto.getAdress());
+        jobApplicationForm.setEmail(dto.getEmail());
+        jobApplicationForm.setName(dto.getName());
+        jobApplicationForm.setPhoneNumber(dto.getPhoneNumber());
+
+
+        Long jobId =Long.parseLong(dto.getJobId());
+        Job job = jobDao.findOne(jobId);
+
+        jobApplicationForm.setJob(job);
+        job.getApplicationForms().add(jobApplicationForm);
+        jobApplicationFormDao.save(jobApplicationForm);
+
+    }
+
+/*
     @Override
     public void assignJobApplicationForm(Long jobId, Long jobApplicationId) {
 
         Job job = jobDao.findOne(jobId);
-        JobApplicationForm jobApplicationForm = jobApplicationFormDao.findOne(jobApplicationId);
+       JobApplicationForm jobApplicationForm = jobApplicationFormDao.findOne(jobApplicationId);
 
         job.getApplicationForms().add(jobApplicationForm);
         jobApplicationForm.setJob(job);
@@ -55,5 +76,6 @@ public class JobApplicationFormImpl implements JobApplicationFormService {
         jobApplicationFormDao.save(jobApplicationForm);
 
     }
+    */
 
 }
