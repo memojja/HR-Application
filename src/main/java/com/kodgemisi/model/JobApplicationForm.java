@@ -10,7 +10,7 @@ import javax.validation.constraints.Pattern;
 @Table(name = "jobApplicationForm")
 public class JobApplicationForm {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = "id",nullable = false)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = "id")
     private Long id;
     @Column(name = "name")
     private String name;
@@ -22,6 +22,11 @@ public class JobApplicationForm {
 
     @Column(name = "adress")
     private String adress;
+
+
+    @ManyToOne
+    @JoinColumn(name = "job_id")
+    private Job job;
 
 
     public Long getId() {
@@ -63,4 +68,14 @@ public class JobApplicationForm {
     public void setAdress(String adress) {
         this.adress = adress;
     }
+
+    public Job getJob() {
+        return job;
+    }
+
+    public void setJob(Job job) {
+        this.job = job;
+    }
+
+
 }

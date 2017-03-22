@@ -6,10 +6,10 @@
 </head>
 <body>
 
-<tr th:each="jobApplicationForm : ${jobApplicationForms}">
+<tr th:each="jobApplicationForm : ${jobApplicationForm}">
 
     <td th:text="${jobApplicationForm.name}"/>
-    <td th:text="${jobApplicationForm.email}" />
+
 
     <a th:href="${'/applicationForm/' + {jobApplicationForm.id}}"> tum detaylar </a>
 

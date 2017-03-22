@@ -4,18 +4,25 @@
     <meta charset="UTF-8" />
     <title>Title</title>
 </head>
+
+
 <body>
 <td th:text="${job.title}" > Item code will appear here</td>
 <td th:text="${job.description}" > Item code will appear here</td>
 <td th:text="${job.numberOfPeopleToHire}" > Item code will appear here</td>
-
-
 <br />
-basvuru:
-<br />
-<a href="/applicationForm">BASVUR</a>
 
-jobApplicationForm
+
+
+gelen basvurular <br />
+<tr th:each="form : ${job.applicationForms}">
+
+    <td th:text="${form.name}" />
+</tr>
+
+
+
+<a th:href="@{/applicationForm/new(id=${job.id})}" >Basvur </a>
 
 
 </body>

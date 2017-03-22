@@ -14,9 +14,11 @@
     <input type="text" th:field="*{email}"/>
     <input type="text" th:field="*{phoneNumber}"/>
     <input type="text" th:field="*{adress}"/>
+    <input type="hidden" name="sequenceNo" th:field="${job.id}" th:value="${job.id}" />
+    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+
 
     <button th:type="submit"> submit </button>
-    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 </form>
 
 </body>

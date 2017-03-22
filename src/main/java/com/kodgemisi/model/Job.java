@@ -1,6 +1,7 @@
 package com.kodgemisi.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by ari on 21.03.2017.
@@ -21,6 +22,9 @@ public class Job {
 
     @Column(name = "numberOfPeopleToHire")
     private int numberOfPeopleToHire;
+
+    @OneToMany(mappedBy ="job",    cascade = CascadeType.ALL)
+    private List<JobApplicationForm> applicationForms;
 
     public Long getId() {
         return id;
@@ -52,5 +56,14 @@ public class Job {
 
     public void setNumberOfPeopleToHire(int numberOfPeopleToHire) {
         this.numberOfPeopleToHire = numberOfPeopleToHire;
+    }
+
+
+    public List<JobApplicationForm> getApplicationForms() {
+        return applicationForms;
+    }
+
+    public void setApplicationForms(List<JobApplicationForm> applicationForms) {
+        this.applicationForms = applicationForms;
     }
 }
