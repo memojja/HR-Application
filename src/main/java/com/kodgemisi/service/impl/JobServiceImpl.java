@@ -60,7 +60,7 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public boolean existsJob(Long id) {
+    public boolean exists(Long id) {
         return jobDao.exists(id);
     }
 }

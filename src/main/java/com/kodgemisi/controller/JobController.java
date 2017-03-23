@@ -1,6 +1,7 @@
 package com.kodgemisi.controller;
 
 import com.kodgemisi.model.Job;
+import com.kodgemisi.service.ApplicantService;
 import com.kodgemisi.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,23 +24,20 @@ import javax.validation.Valid;
 public class JobController {
 
     private final JobService jobService;
+    private final ApplicantService applicantService;
 
     @Autowired
-    public JobController(JobService jobService) {
+    public JobController(JobService jobService, ApplicantService applicantService) {
         this.jobService = jobService;
-    }
-
-    @RequestMapping(value = "/home")
-    public String index(){
-        return "index";
+        this.applicantService = applicantService;
     }
 
     @RequestMapping(value = "/new")
     public ModelAndView createJob(){
-        return new ModelAndView("createJob","job",new Job());
+        return new ModelAndView("jobForm","job",new Job());
     }
 
-    @RequestMapping(value = "/",method = RequestMethod.POST)
+    @RequestMapping(value = "/new",method = RequestMethod.POST)
     public String createJobHandle(@Valid @ModelAttribute("job") Job job , BindingResult bindingResult){
         if(bindingResult.hasErrors())
             return "/new";
@@ -56,7 +54,7 @@ public class JobController {
 
     @RequestMapping(value = "/{id}")
     public String getJobByid(@PathVariable("id") Long id,Model model ){
-        if(!(jobService.existsJob(id)))
+        if(!(jobService.exists(id)))
             return "redirect:/jobs";
         model.addAttribute("job",jobService.findOne(id));
         return "viewJob";

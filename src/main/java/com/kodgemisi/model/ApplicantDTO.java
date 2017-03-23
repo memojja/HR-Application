@@ -3,7 +3,7 @@ package com.kodgemisi.model;
 /**
  * Created by ari on 22.03.2017.
  */
-public class JobDTO {
+public class ApplicantDTO {
 
 
     private String jobId;

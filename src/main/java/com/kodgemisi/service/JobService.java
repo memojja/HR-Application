@@ -15,6 +15,6 @@ public interface JobService {
     List getAll();
     void delete(Long id);
     void deleteAll();
-    boolean existsJob(Long id);
+    boolean exists(Long id);
 
 }

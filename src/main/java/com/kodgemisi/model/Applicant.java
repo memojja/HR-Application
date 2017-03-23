@@ -8,7 +8,7 @@ import javax.validation.constraints.Pattern;
  */
 @Entity
 @Table(name = "jobApplicationForm")
-public class JobApplicationForm {
+public class Applicant {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = "id")
     private Long id;
