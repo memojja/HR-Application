@@ -9,6 +9,7 @@ import com.kodgemisi.service.ApplicantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -58,7 +59,13 @@ public class ApplicantImpl implements ApplicantService {
         Job job = jobDao.findOne(jobId);
 
         jobApplicationForm.setJob(job);
-        job.getApplicationForms().add(jobApplicationForm);
+        if (job.getApplicationForms() == null || job.getApplicationForms().isEmpty()  ){
+            List<Applicant> applicants = new ArrayList<>();
+            applicants.add(jobApplicationForm);
+            job.setApplicationForms(applicants);
+        }
+        else
+            job.getApplicationForms().add(jobApplicationForm);
         applicantDao.save(jobApplicationForm);
 
     }

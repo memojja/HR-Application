@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 
     <meta charset="utf-8" />
@@ -51,6 +51,11 @@
                     <a href="/applicant">List Applicants</a>
                 </li>
             </ul>
+            <div th:inline="text" sec:authorize="isAuthenticated()" class="navbar-form navbar-right" style="padding-top: 10px;" >
+                <form th:action="@{/logout}" method="post"  >
+                    <button type="submit" class="btn btn-block">Log Out</button>
+                </form>
+            </div>
         </div>
         <!-- /.navbar-collapse -->
     </div>
@@ -60,7 +65,9 @@
 <!-- Page Content -->
 <div class="container">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12" >
+
+
 
 
             <div class="jumbotron">

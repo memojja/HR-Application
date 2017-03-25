@@ -13,4 +13,8 @@ public class HomeController {
     public String index(){
         return "index";
     }
+    @RequestMapping(value = "/hello")
+    public String hello(){
+        return "hello";
+    }
 }

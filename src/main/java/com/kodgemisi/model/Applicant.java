@@ -1,5 +1,7 @@
 package com.kodgemisi.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 
@@ -12,14 +14,19 @@ public class Applicant {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = "id")
     private Long id;
+    @NotEmpty
     @Column(name = "name")
     private String name;
-    @Column(name = "email")//@Pattern(regexp=".+@.+\\..+", message="Please provide a valid email address")
+    @NotEmpty
+    @Column(name = "email")
+    @Pattern(regexp=".+@.+\\..+", message="Please provide a valid email address")
     private String email;
 
-    @Column(name = "phoneNumber")// @Pattern(regexp="(^$|[0-9]{10})",message = "Please provide a valid phone number")
+    @NotEmpty
+    @Column(name = "phoneNumber")
+    @Pattern(regexp="(^$|[0-9]{10})",message = "Please provide a valid phone number")
     private String phoneNumber;
-
+    @NotEmpty
     @Column(name = "adress")
     private String adress;
 

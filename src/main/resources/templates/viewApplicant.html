@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 
     <meta charset="utf-8" />
@@ -15,7 +15,6 @@
 
     <!-- Custom CSS -->
     <link href="../static/css/logo-nav.css" th:href="@{/css/logo-nav.css}" rel="stylesheet" />
-
 </head>
 
 <body>
@@ -52,6 +51,11 @@
                 </li>
 
             </ul>
+            <div th:inline="text" sec:authorize="isAuthenticated()" class="navbar-form navbar-right" style="padding-top: 10px;" >
+                <form th:action="@{/logout}" method="post"  >
+                    <button type="submit" class="btn btn-block">Log Out</button>
+                </form>
+            </div>
         </div>
         <!-- /.navbar-collapse -->
     </div>
@@ -70,23 +74,18 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <ul class="list-group">
-
+                        <label for="exampleInputEmail1">Applicant Name</label>
                         <li class="list-group-item" th:text="${jobApplicationForm.name}" />
+                        <label for="exampleInputEmail1">Applicant Email Address</label>
                         <li class="list-group-item" th:text="${jobApplicationForm.email}" />
+                        <label for="exampleInputEmail1">Applicant Phone Number</label>
                         <li class="list-group-item" th:text="${jobApplicationForm.phoneNumber}" />
+                        <label for="exampleInputEmail1">Applicant Address</label>
                         <li class="list-group-item" th:text="${jobApplicationForm.adress}" />
-                        <li class="list-group-item" th:text="${jobApplicationForm.job.id}" />
-
-
-
-
+                        <label for="exampleInputEmail1">Job Title</label>
+                        <li class="list-group-item" th:text="${jobApplicationForm.job.id}" /
 
                     </ul>
-
-
-
-
-
                     <div class="panel-footer clearfix">
                     <div class="pull-right">
                         <a th:href="${'/jobs/' + {jobApplicationForm.job.id}}" class="btn btn-default">Go Back</a>
@@ -94,26 +93,12 @@
                     </div>
                 </div>
 
-
             </div>
-
             </div>
-
-
-
-
-
-
-
-
         </div>
     </div>
 </div>
 <!-- /.container -->
-
-
-
-
 
 <!-- jQuery -->
 <script src="../static/js/jquery.js" th:src="@{/js/jquery.js}"></script>

@@ -1,15 +1,24 @@
 package com.kodgemisi.model;
 
+import com.sun.istack.internal.NotNull;
+import org.aspectj.weaver.ast.Not;
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * Created by ari on 22.03.2017.
  */
 public class ApplicantDTO {
 
 
+    @NotEmpty
     private String jobId;
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String email;
+    @NotEmpty
     private String phoneNumber;
+    @NotEmpty
     private String adress;
 
     public String getJobId() {

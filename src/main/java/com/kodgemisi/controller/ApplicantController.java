@@ -6,8 +6,12 @@ import com.kodgemisi.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
+import java.util.NoSuchElementException;
 
 /**
  * Created by ari on 21.03.2017.
@@ -15,13 +19,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ApplicantController {
 
-    private final ApplicantService jobApplicationFormService;
+    private final ApplicantService applicantService;
     private final JobService jobService;
 
 
     @Autowired
-    public ApplicantController(ApplicantService jobApplicationFormService, JobService jobService) {
-        this.jobApplicationFormService = jobApplicationFormService;
+    public ApplicantController(ApplicantService applicantService, JobService jobService) {
+        this.applicantService = applicantService;
         this.jobService = jobService;
     }
 
@@ -37,22 +41,23 @@ public class ApplicantController {
 
 
     @RequestMapping(value = "/applicant/new",method = RequestMethod.POST)
-    public String formHandle(@ModelAttribute("jobApplicationForm") ApplicantDTO dto){
-        jobApplicationFormService.assignApplicantWithJob(dto);
+    public String formHandle(@Valid @ModelAttribute("jobApplicationForm") ApplicantDTO dto, BindingResult bindingResult){
+        applicantService.assignApplicantWithJob(dto);
         return "redirect:/jobs";
     }
 
     @RequestMapping(value = "/applicant")
     public ModelAndView getAllApplicationForm(){
-        return new ModelAndView("listApplicants","jobApplicationForm",jobApplicationFormService.getAll());
+        return new ModelAndView("listApplicants","jobApplicationForm", applicantService.getAll());
     }
 
     @RequestMapping(value = "/applicant/{id}")
     public ModelAndView getFormById(@PathVariable("id") Long id){
-        return new ModelAndView("viewApplicant","jobApplicationForm",jobApplicationFormService.findOne(id));
-
+        if(applicantService.findOne(id)== null){
+            throw new NoSuchElementException(String.format("Applicant =%s not found ",id));
+        }
+        else {
+            return new ModelAndView("viewApplicant","jobApplicationForm", applicantService.findOne(id));
+        }
     }
-
-
-
 }

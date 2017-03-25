@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 
     <meta charset="utf-8" />
@@ -53,6 +53,11 @@
                 </li>
 
             </ul>
+            <div th:inline="text" sec:authorize="isAuthenticated()" class="navbar-form navbar-right" style="padding-top: 10px;" >
+                <form th:action="@{/logout}" method="post"  >
+                    <button type="submit" class="btn btn-block">Log Out</button>
+                </form>
+            </div>
         </div>
         <!-- /.navbar-collapse -->
     </div>
@@ -80,13 +85,17 @@
 
                             <label for="exampleInputEmail1">Number of people to hire</label>
                             <li class="list-group-item " th:text="${job.numberOfPeopleToHire}" />
+
+                            <label for="exampleInputEmail1">Last applicant date</label>
+                            <li class="list-group-item " th:text="${job.lasApplicationDate}" />
+
                         </ul>
                     <!--
                     <td th:text="${#dates.format(job.lasApplicationDate, 'dd-MMM-yyyy')}"></td>
                     <td><input type="text" name="createdOn" th:value="${#dates.format(prod.createdOn,'yyyy/MM/dd HH:mm')}"/></td>
                     -->
 
-                    <div class="list-group col-lg-5" >
+                    <div class="list-group col-lg-5"  sec:authorize="isAuthenticated()" >
                         <a href="#" class="list-group-item active">
                             gelen basvurular
                         </a>
@@ -109,10 +118,6 @@
     </div>
 </div>
 <!-- /.container -->
-
-
-
-
 
 <!-- jQuery -->
 <script src="../static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
