@@ -52,12 +52,12 @@ public class ApplicantController {
     }
 
     @RequestMapping(value = "/applicant/{id}")
-    public ModelAndView getFormById(@PathVariable("id") Long id){
-        if(applicantService.findOne(id)== null){
-            throw new NoSuchElementException(String.format("Applicant =%s not found ",id));
-        }
-        else {
-            return new ModelAndView("viewApplicant","jobApplicationForm", applicantService.findOne(id));
+    public ModelAndView getFormById(@PathVariable("id") Long id) {
+        if (applicantService.findOne(id) == null) {
+            throw new NoSuchElementException(String.format("Applicant =%s not found ", id));
+        } else {
+            return new ModelAndView("viewApplicant", "jobApplicationForm", applicantService.findOne(id));
+
         }
     }
 }
