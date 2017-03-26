@@ -43,13 +43,13 @@
                     <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="/jobs/new">Create Job</a>
+                    <a sec:authorize="isAuthenticated()" href="/jobs/new">Create Job</a>
                 </li>
                 <li>
                     <a href="/jobs">List Jobs</a>
                 </li>
                 <li>
-                    <a href="/applicant">List Applicants</a>
+                    <a sec:authorize="isAuthenticated()" href="/applicant">List Applicants</a>
                 </li>
 
             </ul>
@@ -58,6 +58,12 @@
                     <button type="submit" class="btn btn-block">Log Out</button>
                 </form>
             </div>
+
+
+            <div th:inline="text" sec:authorize="isAnonymous()" class="navbar-form navbar-right" style="padding-top: 10px;" >
+                <a href="/login" class="btn btn-block">Log In</a>
+            </div>
+
         </div>
         <!-- /.navbar-collapse -->
     </div>
