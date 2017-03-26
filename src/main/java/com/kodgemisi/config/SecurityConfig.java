@@ -39,4 +39,5 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .inMemoryAuthentication()
                 .withUser("hr").password("123").roles("USER");
     }
+
 }

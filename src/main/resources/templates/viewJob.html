@@ -107,8 +107,10 @@
                 </div>
 
                 <div class="panel-footer clearfix">
-                    <div class="pull-right">
+                    <div class="pull-right" sec:authorize="isAnonymous()">
                         <a class="btn btn-primary" th:href="@{/applicant/new(id=${job.id})}" >Basvur </a>
+                    </div>
+                    <div class="pull-right">
                         <a href="/jobs" class="btn btn-default">Go Back</a>
                     </div>
                 </div>

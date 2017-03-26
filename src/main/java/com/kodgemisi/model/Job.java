@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -21,20 +22,20 @@ public class Job {
     @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = "id",nullable = false)
     private Long id;
 
-    @NotEmpty(message = "aaaa")
+    @NotEmpty()
     @Column(name = "title",nullable = false)
     private String title;
-    @NotEmpty(message = "aaaa")
+    @NotEmpty()
     @Column(name = "description",nullable = false)
     private String description;
 
 
-    @NotNull(message = "aaa")
+    @NotNull()
     @Min(1)
     @Column(name = "numberOfPeopleToHire",nullable = false)
     private int numberOfPeopleToHire;
 
-    @NotNull(message = "aa")
+    @NotNull()
     @Column(name = "las_application_date")
     @DateTimeFormat(pattern = "mm/dd/yyyy")
     private Date lasApplicationDate;

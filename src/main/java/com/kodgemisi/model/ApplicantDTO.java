@@ -1,8 +1,7 @@
 package com.kodgemisi.model;
 
-import com.sun.istack.internal.NotNull;
-import org.aspectj.weaver.ast.Not;
 import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 /**
  * Created by ari on 22.03.2017.
@@ -15,11 +14,15 @@ public class ApplicantDTO {
     @NotEmpty
     private String name;
     @NotEmpty
+    @Pattern(regexp=".+@.+\\..+",message = "Ornek : memojja1907@gmail.com")
     private String email;
+
     @NotEmpty
+    @Pattern(regexp="(^$|[0-9]{10})",message = "Ornek : 5346233828")
     private String phoneNumber;
     @NotEmpty
     private String adress;
+
 
     public String getJobId() {
         return jobId;

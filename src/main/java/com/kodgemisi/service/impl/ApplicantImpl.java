@@ -48,25 +48,30 @@ public class ApplicantImpl implements ApplicantService {
     public void assignApplicantWithJob(ApplicantDTO dto) {
 
 
-        Applicant jobApplicationForm = new Applicant();
-        jobApplicationForm.setAdress(dto.getAdress());
-        jobApplicationForm.setEmail(dto.getEmail());
-        jobApplicationForm.setName(dto.getName());
-        jobApplicationForm.setPhoneNumber(dto.getPhoneNumber());
+            Applicant jobApplicationForm = new Applicant();
+            jobApplicationForm.setAdress(dto.getAdress());
+            jobApplicationForm.setEmail(dto.getEmail());
+            jobApplicationForm.setName(dto.getName());
+            jobApplicationForm.setPhoneNumber(dto.getPhoneNumber());
 
 
-        Long jobId =Long.parseLong(dto.getJobId());
-        Job job = jobDao.findOne(jobId);
+            Long jobId =Long.parseLong(dto.getJobId());
+            Job job = jobDao.findOne(jobId);
+            jobApplicationForm.setJob(job);
 
-        jobApplicationForm.setJob(job);
-        if (job.getApplicationForms() == null || job.getApplicationForms().isEmpty()  ){
-            List<Applicant> applicants = new ArrayList<>();
-            applicants.add(jobApplicationForm);
-            job.setApplicationForms(applicants);
-        }
-        else
-            job.getApplicationForms().add(jobApplicationForm);
-        applicantDao.save(jobApplicationForm);
+            if (job.getApplicationForms() == null || job.getApplicationForms().isEmpty()   ){
+                List<Applicant> applicants = new ArrayList<Applicant>();
+                applicants.add(jobApplicationForm);
+                job.setApplicationForms(applicants);
+
+            }
+            else
+                job.getApplicationForms().add(jobApplicationForm);
+
+
+            applicantDao.save(jobApplicationForm);
+
+
 
     }
 

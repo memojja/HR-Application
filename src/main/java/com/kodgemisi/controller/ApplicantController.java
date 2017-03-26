@@ -42,6 +42,8 @@ public class ApplicantController {
 
     @RequestMapping(value = "/applicant/new",method = RequestMethod.POST)
     public String formHandle(@Valid @ModelAttribute("jobApplicationForm") ApplicantDTO dto, BindingResult bindingResult){
+        if(bindingResult.hasErrors())
+            return "applicantForm";
         applicantService.assignApplicantWithJob(dto);
         return "redirect:/jobs";
     }

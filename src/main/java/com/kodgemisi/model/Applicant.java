@@ -19,12 +19,12 @@ public class Applicant {
     private String name;
     @NotEmpty
     @Column(name = "email")
-    @Pattern(regexp=".+@.+\\..+", message="Please provide a valid email address")
+    @Pattern(regexp=".+@.+\\..+")
     private String email;
 
     @NotEmpty
     @Column(name = "phoneNumber")
-    @Pattern(regexp="(^$|[0-9]{10})",message = "Please provide a valid phone number")
+    @Pattern(regexp="(^$|[0-9]{10})")
     private String phoneNumber;
     @NotEmpty
     @Column(name = "adress")

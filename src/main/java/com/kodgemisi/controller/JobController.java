@@ -40,7 +40,7 @@ public class JobController {
     @RequestMapping(value = "/new",method = RequestMethod.POST)
     public String createJobHandle(@Valid @ModelAttribute("job") Job job , BindingResult bindingResult){
         if(bindingResult.hasErrors())
-            return "/new";
+            return "jobForm";
         jobService.create(job);
         return "redirect:/jobs";
     }

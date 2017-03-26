@@ -74,16 +74,6 @@
             </div>
             <form action="/jobs/new" th:action="@{/jobs/new}" th:object="${job}" th:method="POST" method="POST">
 
-              <!-- Date : <input type="date" th:field="*{lasApplicationDate}"/>
-                <input class="date" type="text" th:field="*{lasApplicationDate}"/>
-
-
-                  <input type="text"  th:field="*{lasApplicationDate}" />
-                    <td th:if="${#fields.hasErrors('lasApplicationDate')}" th:errors="*{lasApplicationDate}">Job Type Error will appear here</td>
-                    -->
-
-                <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-
                 <div class="form-group">
                     <label for="exampleInputEmail1">Job Title</label>
                     <input type="text" th:field="*{title}"  class="form-control" id="exampleInputEmail1" />
@@ -110,7 +100,6 @@
                     <input type="text" th:field="*{lasApplicationDate}"  class="form-control" id="exampleInputEmail1" />
                     <td th:if="${#fields.hasErrors('lasApplicationDate')}" th:errors="*{lasApplicationDate}"></td>
                 </div>
-
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
